@@ -30,7 +30,7 @@ pub fn bench(comptime name: []const u8, F: var, benchtime: comptime_int, count: 
 
   const loopPerS = loops * time.ns_per_s / benchtime;
   const timePerOp = benchtime / loops;
-  std.debug.warn("{}{}:   {} loops/s   {} ns/op\n", .{ name, count, loopPerS, timePerOp });
+  std.debug.warn("{}{}:   {}   {} loops/s   {} ns/op\n", .{ name, count, loops, loopPerS, timePerOp });
 }
 
 fn verifySig(n: usize) void {
