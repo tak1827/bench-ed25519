@@ -10,7 +10,7 @@ unsigned char sk[crypto_sign_SECRETKEYBYTES];
 unsigned char sig[crypto_sign_BYTES];
 
 int verify_sig(int n) {
-  int i;
+  int i = 0;
   while (i < n) {
     i += 1;
     if (crypto_sign_verify_detached(sig, MESSAGE, MESSAGE_LEN, pk) != 0) {
@@ -22,10 +22,9 @@ int verify_sig(int n) {
 }
 
 int bench(const unsigned char *name, double benchtime, int count) {
-  // clock_t start_t, end_t, total_t;
   clock_t start_t = clock();
 
-  int loops;
+  int loops = 0;
   while (clock() < start_t + benchtime) {
     if (verify_sig(count) > 0) {
       return 1;

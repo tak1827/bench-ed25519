@@ -10,7 +10,7 @@ pub fn build(b: *Builder) void {
 
     exe.linkSystemLibrary("c");
     exe.linkSystemLibrary("openssl");
-    // exe.linkSystemLibrary("libsodium");
+    exe.linkSystemLibrary("sodium");
     exe.install();
 
     const run_cmd = exe.run();
