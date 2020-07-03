@@ -2,7 +2,7 @@ const Builder = @import("std").build.Builder;
 
 pub fn build(b: *Builder) void {
     const mode = b.standardReleaseOptions();
-    const exe = b.addExecutable("ed25519-donna-bench", "src/main.zig");
+    const exe = b.addExecutable("bench-ed25519", "src/main.zig");
     exe.addCSourceFile("ed25519-donna/ed25519.c", &[_][]const u8{"-std=c99"});
     exe.setBuildMode(mode);
 
@@ -10,6 +10,7 @@ pub fn build(b: *Builder) void {
 
     exe.linkSystemLibrary("c");
     exe.linkSystemLibrary("openssl");
+    // exe.linkSystemLibrary("libsodium");
     exe.install();
 
     const run_cmd = exe.run();

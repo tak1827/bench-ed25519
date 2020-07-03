@@ -3,12 +3,35 @@ Benchmarking of ed25519 by zig using `floodyberry-ed25519-donna` and `jedisct1/l
 
 # Install
 ```
+# download ed25519-donna
 git clone git@github.com:floodyberry/ed25519-donna.git ed25519-donna
+
+# install libsodium
+wget wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.17.tar.gz
+tar xvf libsodium-1.0.17.tar.gz
+cd libsodium-stable
+./configure
+make && make check
+sudo make install
+ldconfig
 ```
 
-# Result
+# Results
+## ed25519-donna-bench by zig
 ```
-root@3c714e28acef:~/Documents/hyperia/working/bench-ed25519# ./zig-cache/bin/ed25519-donna-bench
-BenchmarkVerify10:   1886 loops/s   530054 ns/op
-BenchmarkVerify1000:   19 loops/s   52083333 ns/op
+~/bench-ed25519# ./zig-cache/bin/bench-ed25519
+BenchmarkVerify-Donna-Zig-10:   18982   1898 loops/s   526814 ns/op
+BenchmarkVerify-Donna-Zig-1000:   193   19 loops/s   51813471 ns/op
+```
+
+## ed25519-donna-bench by C
+```
+gcc -o ./clang/donna-bench ./clang/donna-bench.c -lssl -lcrypto
+```
+
+## sodium by C
+```
+~/bench-ed25519# gcc -o ./clang/sodium-bench ./clang/sodium-bench.c -lsodium
+~/bench-ed25519# ./clang/sodium-bench
+BenchmarkVerify-Sodium-C-10:   1423212   1423212 loops/s   0 ms/op
 ```

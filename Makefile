@@ -3,4 +3,3 @@ build:
 
 run:
 	zig build run
-
