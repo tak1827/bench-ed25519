@@ -33,5 +33,5 @@ gcc -o ./clang/donna-bench ./clang/donna-bench.c -lssl -lcrypto
 ```
 ~/bench-ed25519# gcc -o ./clang/sodium-bench ./clang/sodium-bench.c -lsodium
 ~/bench-ed25519# ./clang/sodium-bench
-BenchmarkVerify-Sodium-C-10:   1423212   1423212 loops/s   0 ms/op
+BenchmarkVerify-Sodium-C-10:   16234   1623 loops/s   615 ms/op
 ```
